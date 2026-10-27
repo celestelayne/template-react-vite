@@ -14,7 +14,7 @@ Each slice introduces one user capability and builds on the previous slice. Do n
 
 | Order| Slice         | Capability      | State Ownership |
 | :--- | :------------ | :-------------- | :-------------- |
-| 1    | films-list  | Render all films from local data in a responsive grid, including missing-data and empty states as a read-only list.     | Statis local data |
+| 1    | films-list  | Render all films from local data as a responsive, read-only list, including missing-data and empty states.     | static local data |
 | 2    | search-films  | Search by film title. Introduce view-rules.ts and a pure title-matching predicate.      | URL?q= |
 | 3    | filter-films  | Filter by genre and combine filtering with the existing search.      | URL?genre= |
 | 4    | sort-films  | Sort films predictably without mutating the source dataset.      | URL?sort= |
@@ -114,11 +114,11 @@ Create files and abstractions only when a slice needs them.
   - Film selection lives in React component state.
   - Grid/list preference lives in browser storage, introduced by the `grid-list-toggle` slice.
   - Do not introduce URL or storage infrastructure before the corresponding slice.
-5. **Validate external boundaries.** Validate local starter data at its loading boundary and validate URL and browser-storage values when those features are introduced. Invalid values fall back to safe defaults rather than crashing the interface.
+5. **Validate external boundaries.** Validate local starter data at its loading boundary and validate URL and browser-storage values when those features are introduced. Invalid values fall back to safe defaults rather than crashing the interface. When boundary validation is introduced, use Zod — it is not pre-installed; the first slice whose spec requires it adds `zod` as a dependency and defines its schemas.
 6. **No premature abstractions.** Prefer straightforward components and functions. Extract reusable abstractions only after genuine repetition or a clear architectural need.
 7. **Use theme tokens.** Use established theme tokens for colors, spacing, typography, radii, and other shared visual values. Do not introduce arbitrary styling values without justification.
 8. **Accessible interactions.** Keyboard interaction works, focus is visible, and changes to result counts are announced appropriately when search or filtering is introduced.
-9. **No unnecessary dependencies.** Use React, browser APIs, and existing project tooling unless a new dependency solves a demonstrated problem and is approved.
+9. **No unnecessary dependencies.** Use React, browser APIs, and existing project tooling unless a new dependency solves a demonstrated problem and is approved. Testing uses Vitest with `--passWithNoTests`; `jsdom` and `@testing-library/react` are not installed — add them under the first slice whose spec requires component tests, as part of that slice's plan.
 10. **Read-only means read-only.** Do not implement adding, editing, deleting, or otherwise changing film records.
 
 ## Interface quality

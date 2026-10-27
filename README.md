@@ -28,7 +28,7 @@ Use this starter when building applications that need:
 | Linting     | ESLint 10 (with typescript-eslint)      |
 | AI development     | Claude Code (via AGENTS.md + new-slice skill)      |
 | Database     | None — local-only, read-only      |
-| Validation     | None installed     |
+| Validation     | Zod (installed when the first boundary-validation slice needs it)     |
 | End-to-end testing     | None installed     |
 | CI     | GitHub Actions     |
 

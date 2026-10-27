@@ -192,11 +192,7 @@ Matches the nested structure in `AGENTS.md`. `view-rules.ts` is intentionally ab
 
 **Film data**
 
-Define the `Film` type and local starter data in:
-
-```text
-src/features/films/films.ts
-```
+Define the `Film` type in `src/features/films/types.ts` and the local starter data in `src/features/films/data/films.ts`, matching the structure in `AGENTS.md`.
 
 Use TypeScript to express required and optional fields clearly.
 
@@ -247,6 +243,8 @@ npm run lint
 ```
 
 If a script is missing or fails, report the result rather than silently changing the toolchain.
+
+The `films-list` slice's plan should include adding `jsdom` and `@testing-library/react` as dev dependencies and setting Vitest's `test.environment` to `jsdom`, since the required test coverage below renders React components. These are not pre-installed.
 
 ### Required test coverage
 
